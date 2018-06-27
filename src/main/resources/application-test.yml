@@ -1,0 +1,15 @@
+datasource1:
+  spring:
+    datasource:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/lzsdata?characterEncoding=UTF8&useSSL=false
+      username: root
+      password: 123456
+      driverClassName: com.mysql.jdbc.Driver
+
+datasource2:
+  spring:
+    datasource:
+      jdbc-url: jdbc:sqlserver://127.0.0.1:1433;DatabaseName=ecology
+      username: admin
+      password: 123456
+      driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver

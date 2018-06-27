@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+
+    <property file="build.properties"/>
+
+    <property name="artifactName" value="${artifactId}-${version}"/>
+    <property name="releaseFullDir" value="${releaseDir}/${artifactId}"/>
+
+    <target name="test">
+        <echo message="构建测试环境的发布文件 ${artifactName}"/>
+        <exec command="mvn clean package -P test -Dmaven.test.skip=true"/>
+
+        <delete dir="${releaseFullDir}"/>
+        <copy file="target/${artifactId}.jar" tofile="${releaseFullDir}/${artifactId}-${version}.jar"/>
+    </target>
+
+    <target name="prod">
+        <echo message="构建生产环境的发布文件 ${artifactName}"/>
+        <exec command="mvn clean package -P production -Dmaven.test.skip=true"/>
+
+        <delete dir="${releaseFullDir}"/>
+        <copy file="target/${artifactId}.jar" tofile="${releaseFullDir}/${artifactId}-${version}.jar"/>
+        <ftp server= "${ssh2.hostname}" userid ="${ssh2.userid}" password="${ssh2.password}" remotedir="${ssh2.remotedir}" action ="put">
+        <fileset dir="${releaseFullDir}">
+        <filename name="${artifactId}-${version}.jar"></filename>
+        </fileset>
+        </ftp>
+
+
+
+    </target>
+
+    <target name="clean">
+        <exec command="mvn clean"/>
+    </target>
+
+</project>

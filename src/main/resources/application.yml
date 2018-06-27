@@ -1,0 +1,23 @@
+spring:
+  profiles:
+    active: @profileActive@
+
+mybatis:
+  config-location: classpath:mybatis/config.xml
+
+logging:
+  config: classpath:config/log/logback-spring.xml
+
+wechat:
+  mp:
+    appId: wxd4bb4f34dde4e67d
+    secret: cdd6c9b87257d273e018d4c1f57c5db4
+    redirect_url: http://127.0.01/ngrsk/login
+    token:
+    aesKey:
+  miniapp:
+      appid: wx306a75a5e0413e38
+      secret: ceb10bb10c57a72357834aceffba0b31
+      token:
+      aesKey:
+      msgDataFormat: JSON
